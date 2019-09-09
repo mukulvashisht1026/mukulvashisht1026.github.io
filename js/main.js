@@ -36,7 +36,7 @@ jQuery(document).ready(function($) {
           'id' : 'collapseItem' + counter,
         });
 
-        counter++;
+        counter++;	
 
       });
 
