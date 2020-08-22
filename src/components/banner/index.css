@@ -1,0 +1,19 @@
+.banner {
+  margin-top: 70px;
+  padding: 5px;
+  /* background-color: white; */
+  height: 100vh;
+  /* display: grid; */
+}
+.banner-content {
+  background-image: linear-gradient(to right, brown, orange);
+
+  /* background-color: grey; */
+  /* border-style: solid; */
+  /* border-width: 1px; */
+  /* border-radius: 10px; */
+  margin: 20px 5px 20px 5px;
+  padding: 5px;
+  height: 80vh;
+  box-shadow: 10px 10px 8px #473023;
+}
