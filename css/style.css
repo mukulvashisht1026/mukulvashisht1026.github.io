@@ -677,6 +677,29 @@ h1, h2, h3, h4, h5,
     .section-title {
       font-size: 1.5rem; } }
 
+.section-sub-title-2 {
+  font-size: 3rem;
+  margin-bottom: 1.8rem;
+  font-weight: 700;
+  max-width: 850px; }
+  @media (max-width: 891.98px) {
+    .section-title {
+      font-size: 1.2rem; } }
+
+.swiggy {
+  color: #ff9d00d5;
+}
+
+
+.internship {
+  color: #072e05d5;
+}
+
+.biofourmis {
+  color: #007bffd5;
+}
+
+
 .counter .icon-wrap {
   margin-right: 1.5rem; }
   .counter .icon-wrap > span {
@@ -857,3 +880,23 @@ h1, h2, h3, h4, h5,
   @media (max-width: 991.98px) {
     .service {
       padding: 2rem; } }
+
+
+
+.float-parent-element { 
+  width: 50%; 
+} 
+.float-child-element { 
+  float: left; 
+  width: 50%; 
+} 
+.red { 
+  background-color: red; 
+  margin-left: 50%; 
+  height: 100px; 
+} 
+.yellow { 
+  margin-left: 50%; 
+  height: 100px; 
+  background-color: yellow; 
+}
