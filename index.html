@@ -587,6 +587,52 @@
 
   
   <script src="js/main.js"></script>
-    
+
+  <!-- Game Mode Button -->
+  <a href="/game/" class="game-mode-btn" title="Play Interactive Portfolio Game">
+    <span class="game-mode-icon">🎮</span>
+    <span class="game-mode-label">Game Mode</span>
+  </a>
+  <style>
+    .game-mode-btn {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 22px;
+      background: linear-gradient(135deg, #42a5f5, #ab47bc);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 50px;
+      font-family: 'Muli', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 24px rgba(66,165,245,0.45), 0 2px 8px rgba(0,0,0,0.2);
+      transition: transform 0.18s, box-shadow 0.18s;
+      animation: gmPulse 2.6s ease infinite;
+    }
+    .game-mode-btn:hover {
+      transform: translateY(-3px) scale(1.04);
+      box-shadow: 0 8px 36px rgba(66,165,245,0.6), 0 2px 8px rgba(0,0,0,0.2);
+      color: #fff;
+      text-decoration: none;
+    }
+    .game-mode-btn:active { transform: scale(0.97); }
+    .game-mode-icon { font-size: 20px; }
+    @keyframes gmPulse {
+      0%, 100% { box-shadow: 0 4px 24px rgba(66,165,245,0.4); }
+      50%       { box-shadow: 0 4px 36px rgba(171,71,188,0.6); }
+    }
+    @media (max-width: 480px) {
+      .game-mode-btn { bottom: 20px; right: 20px; padding: 12px 18px; font-size: 14px; }
+      .game-mode-label { display: none; }
+      .game-mode-btn { border-radius: 50%; width: 52px; height: 52px; justify-content: center; padding: 0; }
+    }
+  </style>
+
   </body>
 </html>
