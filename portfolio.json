@@ -1,0 +1,141 @@
+{
+  "personal": {
+    "name": "Mukul Vashisht",
+    "title": "Senior Software Engineer",
+    "tagline": "Backend | Golang, Java | Distributed Systems | Ex-Gojek, Swiggy",
+    "location": "Bengaluru, Karnataka, India",
+    "address": "2785-Gali Arya Samaj Sitaram Bazar, Delhi - 110006",
+    "phone": "+91 9899730037",
+    "email": "mukulvashisht1026@gmail.com",
+    "github": "mukulvashisht1026",
+    "linkedin": "mukulvashisht1026",
+    "available": true
+  },
+  "summary": "Software Engineer with 5+ years of experience building high-scale backend and platform systems using Golang, Java, Node.js, and Python. Work spans microservices, real-time APIs, and distributed event-driven architectures powering applications that serve millions of users.",
+  "skills": {
+    "categories": [
+      {
+        "name": "Backend & Infra",
+        "items": ["Golang", "Java", "Node.js", "Python", "Django", "Spring Boot", "gRPC", "Apache Kafka", "Redis", "PostgreSQL", "Kubernetes", "Docker", "AWS"]
+      },
+      {
+        "name": "Front-End",
+        "items": ["ReactJS", "Redux", "HTML", "CSS", "JavaScript", "jQuery", "Bootstrap"]
+      },
+      {
+        "name": "Languages",
+        "items": ["Golang", "Java", "Python", "C/C++"]
+      }
+    ]
+  },
+  "experience": [
+    {
+      "role": "Senior Software Engineer (Golang)",
+      "company": "Careem (Uber)",
+      "duration": "Feb 2026 – Present",
+      "location": "Dubai, UAE",
+      "points": [
+        "Working on Golang-based ride fulfillment services integrating with Uber's ecosystem to serve Careem users."
+      ]
+    },
+    {
+      "role": "Senior Software Engineer – Platform Engineering",
+      "company": "GoTo Group (Gojek)",
+      "duration": "Jan 2025 – Feb 2026",
+      "location": "Bengaluru, India",
+      "points": [
+        "Led Golang-based Notifications platform serving millions+ messages/day, ensuring 99.9%+ uptime.",
+        "Designed and delivered Number Masking in Chat as a Golang microservice to protect user privacy.",
+        "Improved reliability and observability across messaging microservices using Kafka, Redis, and monitoring tools."
+      ]
+    },
+    {
+      "role": "Software Engineer 2",
+      "company": "AJIO.com",
+      "duration": "Mar 2023 – Dec 2024",
+      "location": "Bengaluru, India",
+      "points": [
+        "Built multi-tenant event-driven microservice using Kafka for catalog quality check — reduced tenant boarding time by 60%, improved efficiency by 23%.",
+        "Designed microservices from scratch to integrate third-party APIs (e.g. H&M Inventory API).",
+        "Implemented SAML auth with Reliance SSO using Istio in Kubernetes for microservice-to-microservice communication."
+      ]
+    },
+    {
+      "role": "Software Engineer",
+      "company": "Swiggy",
+      "duration": "May 2021 – Jan 2023",
+      "location": "Bengaluru, India",
+      "points": [
+        "Built Shadow Coupons in Golang — increased Swiggy savings by 30–40% on gamification coupons.",
+        "Migrated 1.6 million SwiggyOne users' data from global to customer-level offers using AWS and Databricks.",
+        "Built SwiggyOne Premium Membership Plan; offers nudged to 20M users, applied for 1.6M users.",
+        "Migrated REST coupon API to gRPC pipeline; upgraded SwiggyOne service from Spring Boot v1 to v2."
+      ]
+    },
+    {
+      "role": "Software Engineer",
+      "company": "Biofourmis",
+      "duration": "Oct 2020 – May 2021",
+      "location": "Bengaluru, India",
+      "points": [
+        "Implemented CRUD APIs with filter and pagination for Remote Patient Monitoring (RPM) microservices.",
+        "Built nested Questionnaire functionality using Depth First Search algorithm.",
+        "Used Kafka for microservice communication; developed frontend features in ReactJS."
+      ]
+    },
+    {
+      "role": "Web Development Intern",
+      "company": "Dietitio",
+      "duration": "Jun 2018 – Jul 2018",
+      "location": "Dwarka, Delhi",
+      "points": [
+        "Added multiple features to the CRM dashboard using Django.",
+        "Added real-time functionality using Django Channels."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "B.Tech, Computer Science & Engineering",
+      "institution": "Guru Gobind Singh Indraprastha University",
+      "year": "2016 – 2020"
+    }
+  ],
+  "projects": [
+    {
+      "name": "Real Time Chat Application",
+      "tech": "Django Channels",
+      "desc": "Real-time messaging app using WebSockets via Django Channels.",
+      "image": "images/about_1.jpg"
+    },
+    {
+      "name": "Lead Management System",
+      "tech": "Django + Heroku",
+      "desc": "Built during internship at Dietitio. Deployed on Heroku.",
+      "image": "images/slide_1.jpg"
+    },
+    {
+      "name": "Web Based Chain Reaction Game",
+      "tech": "JavaScript",
+      "desc": "Web-based chain reaction strategy game.",
+      "image": "images/slide_3.jpg"
+    },
+    {
+      "name": "Gamer Zone",
+      "tech": "Node.js",
+      "desc": "Gaming platform with Node.js backend.",
+      "image": "images/slide_2.jpg"
+    },
+    {
+      "name": "TODO List",
+      "tech": "Django",
+      "desc": "Task management application built with Django.",
+      "image": "images/slide_4.jpg"
+    }
+  ],
+  "awards": ["Rank 1 in web development at Inceptum"],
+  "certifications": [
+    "Mandarin Beginner 1 Certificate of Attendance",
+    "Neural Networks and Deep Learning"
+  ]
+}

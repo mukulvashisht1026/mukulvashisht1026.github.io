@@ -118,12 +118,51 @@ function drawSun(ctx, w) {
   ctx.fill()
 }
 
-function drawMountains(ctx, cX, groundY, w) {
-  // Back layer — soft lavender
+function pickImg(imgs, idx) {
+  if (!imgs || imgs.length === 0) return null
+  return imgs[Math.abs(idx) % imgs.length]
+}
+
+function drawMountains(ctx, cX, groundY, w, mountainImgs) {
   const back = [
-    { wx: 300,  h: 165 }, { wx: 950,  h: 205 }, { wx: 1600, h: 175 },
-    { wx: 2250, h: 215 }, { wx: 2900, h: 185 }, { wx: 3600, h: 200 },
+    { wx: 80,   h: 145 }, { wx: 300,  h: 165 }, { wx: 620,  h: 195 },
+    { wx: 950,  h: 205 }, { wx: 1260, h: 175 }, { wx: 1600, h: 185 },
+    { wx: 1920, h: 200 }, { wx: 2250, h: 215 }, { wx: 2580, h: 180 },
+    { wx: 2900, h: 190 }, { wx: 3220, h: 200 }, { wx: 3600, h: 205 },
+    { wx: 3950, h: 165 }, { wx: 4280, h: 180 },
   ]
+  const front = [
+    { wx: 230,  h: 118 }, { wx: 530,  h: 130 }, { wx: 850,  h: 138 },
+    { wx: 1120, h: 125 }, { wx: 1440, h: 148 }, { wx: 1750, h: 120 },
+    { wx: 2050, h: 135 }, { wx: 2380, h: 142 }, { wx: 2700, h: 128 },
+    { wx: 3000, h: 133 }, { wx: 3320, h: 125 }, { wx: 3650, h: 138 },
+    { wx: 3970, h: 122 }, { wx: 4250, h: 130 },
+  ]
+
+  if (mountainImgs && mountainImgs.length > 0) {
+    // Back layer — slower parallax (0.22)
+    for (const m of back) {
+      const px = m.wx - cX * 0.22
+      if (px < -320 || px > w + 320) continue
+      const img = pickImg(mountainImgs, Math.floor(m.wx / 100))
+      const drawH = m.h * 1.5
+      const drawW = drawH * (img.width / img.height)
+      ctx.drawImage(img, px - drawW / 2, groundY - drawH, drawW, drawH)
+    }
+    // Front layer — faster parallax (0.38)
+    for (const m of front) {
+      const px = m.wx - cX * 0.38
+      if (px < -260 || px > w + 260) continue
+      // offset index by back.length so front picks different images
+      const img = pickImg(mountainImgs, Math.floor(m.wx / 100) + back.length)
+      const drawH = m.h * 1.5
+      const drawW = drawH * (img.width / img.height)
+      ctx.drawImage(img, px - drawW / 2, groundY - drawH, drawW, drawH)
+    }
+    return
+  }
+
+  // Canvas fallback — back layer (soft lavender)
   for (const m of back) {
     const px = m.wx - cX * 0.22
     if (px < -280 || px > w + 280) continue
@@ -139,7 +178,6 @@ function drawMountains(ctx, cX, groundY, w) {
     ctx.lineTo(px + 250, groundY)
     ctx.closePath()
     ctx.fill()
-    // Snow cap
     ctx.fillStyle = 'rgba(255,255,255,0.72)'
     ctx.beginPath()
     ctx.moveTo(px - 32, groundY - m.h + 48)
@@ -148,11 +186,7 @@ function drawMountains(ctx, cX, groundY, w) {
     ctx.closePath()
     ctx.fill()
   }
-  // Front layer — slightly deeper pink
-  const front = [
-    { wx: 620,  h: 125 }, { wx: 1280, h: 145 }, { wx: 1950, h: 115 },
-    { wx: 2600, h: 135 }, { wx: 3250, h: 128 }, { wx: 3900, h: 118 },
-  ]
+  // Canvas fallback — front layer (deeper pink)
   for (const m of front) {
     const px = m.wx - cX * 0.38
     if (px < -210 || px > w + 210) continue
@@ -169,7 +203,7 @@ function drawMountains(ctx, cX, groundY, w) {
   }
 }
 
-function drawClouds(ctx, cX, w, t) {
+function drawClouds(ctx, cX, w, t, cloudImgs) {
   const clouds = [
     { wx: 220,  y: 68,  s: 1.3 }, { wx: 800,  y: 50,  s: 1.0 },
     { wx: 1400, y: 88,  s: 1.5 }, { wx: 1950, y: 58,  s: 1.1 },
@@ -180,7 +214,16 @@ function drawClouds(ctx, cX, w, t) {
     const px = c.wx - cX * 0.48
     if (px < -300 || px > w + 300) continue
     const drift = Math.sin(t * 0.00022 + c.wx) * 10
-    drawCartoonCloud(ctx, px + drift, c.y, c.s)
+    const img = pickImg(cloudImgs, Math.floor(c.wx / 200))
+    if (img) {
+      const drawW = 160 * c.s
+      const drawH = drawW * (img.height / img.width)
+      ctx.globalAlpha = 0.9
+      ctx.drawImage(img, px + drift - drawW / 2, c.y - drawH, drawW, drawH)
+      ctx.globalAlpha = 1
+    } else {
+      drawCartoonCloud(ctx, px + drift, c.y, c.s)
+    }
   }
 }
 
@@ -208,7 +251,7 @@ function drawCartoonCloud(ctx, x, y, s) {
   ctx.fill()
 }
 
-function drawGround(ctx, cX, groundY, w, h) {
+function drawGround(ctx, cX, groundY, w, h, grassImgs) {
   // Soil
   const sg = ctx.createLinearGradient(0, groundY, 0, h)
   sg.addColorStop(0, '#C8873C')
@@ -223,10 +266,21 @@ function drawGround(ctx, cX, groundY, w, h) {
   ctx.fillRect(0, groundY, w, 8)
 
   // Grass tufts
-  ctx.fillStyle = '#48AA48'
-  for (let wx = (cX % 30); wx < w; wx += 30) {
-    ctx.fillRect(wx, groundY + 6, 8, 5)
-    ctx.fillRect(wx + 18, groundY + 8, 5, 4)
+  if (grassImgs && grassImgs.length > 0) {
+    const step = 44
+    for (let sx = -(cX % step); sx < w; sx += step) {
+      const slot = Math.floor((sx + cX) / step)
+      const img = pickImg(grassImgs, Math.abs(slot))
+      const gw = 28 + (Math.abs(slot * 7) % 10)
+      const gh = gw * (img.height / img.width)
+      ctx.drawImage(img, sx - gw / 2, groundY - gh + 4, gw, gh)
+    }
+  } else {
+    ctx.fillStyle = '#48AA48'
+    for (let wx = (cX % 30); wx < w; wx += 30) {
+      ctx.fillRect(wx, groundY + 6, 8, 5)
+      ctx.fillRect(wx + 18, groundY + 8, 5, 4)
+    }
   }
 
   // Soil pebbles (rounded)
@@ -696,20 +750,20 @@ function drawHUD(ctx, w, h, playerX, score) {
   ctx.fillStyle = 'rgba(30,80,140,0.7)'
   ctx.fillText('← → MOVE  ·  ↑ / W JUMP  ·  E EXPLORE', w / 2, 40)
 
-  // Score box top-left
+  // Score box top-left (offset to make room for home button)
   ctx.fillStyle = 'rgba(255,255,255,0.6)'
-  ctx.fillRect(14, 14, 120, 38)
+  ctx.fillRect(60, 14, 120, 38)
   ctx.strokeStyle = 'rgba(200,150,0,0.5)'
   ctx.lineWidth = 1.5
-  ctx.strokeRect(14, 14, 120, 38)
+  ctx.strokeRect(60, 14, 120, 38)
   ctx.font = '9px "Segoe UI", sans-serif'
   ctx.textAlign = 'left'
   ctx.textBaseline = 'top'
   ctx.fillStyle = '#8B6000'
-  ctx.fillText('SCORE', 22, 20)
+  ctx.fillText('SCORE', 68, 20)
   ctx.font = 'bold 20px "Segoe UI", sans-serif'
   ctx.fillStyle = '#CC8800'
-  ctx.fillText(score, 22, 30)
+  ctx.fillText(score, 68, 30)
 
   const mw = 160, mh = 12, mx = w - mw - 14, my = 14
   ctx.fillStyle = 'rgba(255,255,255,0.55)'
@@ -744,13 +798,31 @@ export default function Game2D({ onNearbyChange, modalOpen, paused, score, onGam
   const scoreRef = useRef(score)
   const endFiredRef = useRef(false)
   const starsRef = useRef(COINS_DATA.map(s => ({ ...s, collected: false })))
-  const skyImgRef = useRef(null)
+  const skyImgRef      = useRef(null)
+  const mountainsImgRef = useRef([])
+  const cloudsImgRef    = useRef([])
+  const grassImgRef     = useRef([])
 
   useEffect(() => {
     const img = new Image()
     img.onload = () => { skyImgRef.current = img }
-    img.onerror = () => { skyImgRef.current = null }   // falls back to gradient
-    img.src = '/images/sky.png'
+    img.onerror = () => { skyImgRef.current = null }
+    img.src = import.meta.env.BASE_URL + 'images/sky.png'
+  }, [])
+
+  useEffect(() => {
+    const loadSet = (name, ref) => {
+      const tryNext = (i, acc) => {
+        const img = new Image()
+        img.onload = () => tryNext(i + 1, [...acc, img])
+        img.onerror = () => { ref.current = acc }
+        img.src = import.meta.env.BASE_URL + `images/${name}${i}.png`
+      }
+      tryNext(1, [])
+    }
+    loadSet('mountains', mountainsImgRef)
+    loadSet('clouds',    cloudsImgRef)
+    loadSet('grass',     grassImgRef)
   }, [])
 
   useEffect(() => { modalRef.current = modalOpen }, [modalOpen])
@@ -884,9 +956,9 @@ export default function Game2D({ onNearbyChange, modalOpen, paused, score, onGam
       ctx.clearRect(0, 0, w, h)
       drawSky(ctx, w, h, skyImgRef.current)
       drawSun(ctx, w)
-      drawMountains(ctx, cX, groundY, w)
-      drawClouds(ctx, cX, w, t)
-      drawGround(ctx, cX, groundY, w, h)
+      drawMountains(ctx, cX, groundY, w, mountainsImgRef.current)
+      drawClouds(ctx, cX, w, t, cloudsImgRef.current)
+      drawGround(ctx, cX, groundY, w, h, grassImgRef.current)
       drawTrees(ctx, cX, groundY, w)
       drawBushes(ctx, cX, groundY, w)
       drawPlatforms(ctx, cX, groundY, w)

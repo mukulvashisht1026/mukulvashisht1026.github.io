@@ -121,6 +121,7 @@ export default function App() {
 
   return (
     <div className="game-container">
+      <a href="/" className="game-home-btn" title="Back to Portfolio">🏠</a>
       <Game2D
         key={resetKey}
         onNearbyChange={handleNearbyChange}

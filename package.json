@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && mv game/game.html game/index.html",
+    "build": "vite build && cp game/game.html game/index.html",
     "preview": "vite preview"
   },
   "dependencies": {

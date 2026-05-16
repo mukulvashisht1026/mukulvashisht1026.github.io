@@ -1,3 +1,5 @@
+import data from '../../portfolio.json'
+
 export const ZONES = [
   {
     id: 'about',
@@ -8,22 +10,16 @@ export const ZONES = [
     description: 'Learn about Mukul',
     content: {
       type: 'about',
-      title: 'Mukul Vashisht',
-      subtitle: 'Web Developer | ML Enthusiast',
-      body: 'B.Tech CSE student at G.B. Pant Government Engineering College, Delhi. Passionate about building web applications and exploring machine learning.',
-      education: [
-        'B.Tech CSE – G.B. Pant Govt. Engineering College, Delhi (ongoing)',
-        '12th – 90.2% CBSE, Vardhman Shiksha Mandir (2015)',
-        '10th – 8.6 CGPA CBSE, Preet Public Sr. Sec. School (2013)',
-      ],
-      experience: [
-        {
-          role: 'Django Intern',
-          company: 'Dietitio',
-          duration: '45 days',
-          desc: 'Built real-time Lead Management System in Django, deployed on Heroku.',
-        },
-      ],
+      title: data.personal.name,
+      subtitle: `${data.personal.title} | ${data.personal.tagline}`,
+      body: data.summary,
+      education: data.education.map(e => `${e.degree} – ${e.institution} (${e.year})`),
+      experience: data.experience.map(e => ({
+        role: e.role,
+        company: e.company,
+        duration: e.duration,
+        desc: e.points[0],
+      })),
     },
   },
   {
@@ -36,20 +32,7 @@ export const ZONES = [
     content: {
       type: 'skills',
       title: 'Technical Skills',
-      categories: [
-        {
-          name: 'Front-End',
-          items: ['HTML', 'CSS', 'JavaScript', 'jQuery', 'ReactJS', 'Redux', 'Bootstrap'],
-        },
-        {
-          name: 'Back-End',
-          items: ['Django', 'NodeJS', 'PHP', 'SQL', 'Express', 'MongoDB', 'Django REST Framework'],
-        },
-        {
-          name: 'Languages',
-          items: ['C/C++', 'Python', 'Java'],
-        },
-      ],
+      categories: data.skills.categories,
     },
   },
   {
@@ -62,33 +45,7 @@ export const ZONES = [
     content: {
       type: 'projects',
       title: 'My Projects',
-      items: [
-        {
-          name: 'Real Time Chat Application',
-          tech: 'Django Channels',
-          desc: 'Real-time messaging app using WebSockets via Django Channels.',
-        },
-        {
-          name: 'Lead Management System',
-          tech: 'Django + Heroku',
-          desc: 'Built during 45-day internship at Dietitio. Deployed on Heroku.',
-        },
-        {
-          name: 'Chain Reaction Game',
-          tech: 'JavaScript',
-          desc: 'Web-based chain reaction strategy game.',
-        },
-        {
-          name: 'Gamer Zone',
-          tech: 'NodeJS',
-          desc: 'Gaming platform with Node.js backend.',
-        },
-        {
-          name: 'TODO List',
-          tech: 'Django',
-          desc: 'Task management application built with Django.',
-        },
-      ],
+      items: data.projects.map(p => ({ name: p.name, tech: p.tech, desc: p.desc })),
     },
   },
   {
@@ -101,10 +58,10 @@ export const ZONES = [
     content: {
       type: 'contact',
       title: 'Wanna Work With Me?',
-      available: true,
-      phone: '+91 9899730037',
-      email: 'mukul.vashisht.2610@gmail.com',
-      github: 'mukulvashisht1026',
+      available: data.personal.available,
+      phone: data.personal.phone,
+      email: data.personal.email,
+      github: data.personal.github,
     },
   },
 ]
