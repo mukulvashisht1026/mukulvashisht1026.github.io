@@ -1,0 +1,10 @@
+name: mukul-portfolio
+services:
+  portfolio:
+    image: ${IMAGE_PREFIX:-mukul-local}/portfolio:${IMAGE_TAG:-latest}
+    platform: ${DOCKER_PLATFORM:-linux/amd64}
+    build:
+      context: .
+    restart: unless-stopped
+    ports:
+      - "${PORT:-8085}:8080"
