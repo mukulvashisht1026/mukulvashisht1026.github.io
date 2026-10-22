@@ -92,7 +92,7 @@ Reload `index.html` and it appears at the top of the events list.
 
 ## Repository and deployment
 
-This repository now serves the Professional page from `index.html` and the Personal page from `personal.html`. `profile.js` is the data source for these pages. The previous homepage is retained at `classic.html`; its original data/assets and the interactive game remain available.
+This repository now serves the Professional page from `index.html` and the Personal page from `personal.html`. `profile.js` is the data source for these pages. The previous homepage is retained at `version_1.html`; its original data/assets and the interactive game remain available.
 
 No build is needed to open the portfolio or serve this repository from GitHub Pages. To package a static upload, run `npm run build:portfolio` (Node.js only; no dependency install needed). This writes the site and preserved legacy assets into `dist/`; edit root files, not generated `dist/` copies.
 

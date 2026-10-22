@@ -10,7 +10,7 @@ for (const name of required) {
 }
 rmSync(output, { recursive: true, force: true });
 mkdirSync(output, { recursive: true });
-for (const name of [...required, 'classic.html', 'css', 'images', 'js', 'fonts', 'portfolio.json', 'game', 'Profile.pdf']) {
+for (const name of [...required, 'version_1.html', 'css', 'images', 'js', 'fonts', 'portfolio.json', 'game', 'Profile.pdf']) {
   if (existsSync(join(root, name))) cpSync(join(root, name), join(output, name), { recursive: true });
 }
 console.log('Static portfolio packaged in dist/ (with the existing game when available).');
