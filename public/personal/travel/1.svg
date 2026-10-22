@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="750" viewBox="0 0 1200 750">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9fd3ff"/><stop offset="1" stop-color="#e4d7ff"/></linearGradient>
+<filter id="f"><feGaussianBlur stdDeviation="40"/></filter></defs>
+<rect width="1200" height="750" fill="url(#g)"/>
+<circle cx="1330" cy="220" r="160" fill="#ffffff" opacity=".45" filter="url(#f)"/>
+<circle cx="230" cy="560" r="200" fill="#ffffff" opacity=".35" filter="url(#f)"/>
+<text x="600" y="370" font-family="Georgia, serif" font-size="72" fill="#1e2a4a" text-anchor="middle">Travel</text>
+<text x="600" y="440" font-family="Helvetica, Arial, sans-serif" font-size="30" fill="#4a5578" text-anchor="middle">Sample photo 1 · Mountains</text>
+</svg>

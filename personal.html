@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dreamfolio — Software Engineer</title>
+  <meta name="description" content="A software engineering portfolio.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="profile.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body data-page="personal">
+  <a class="skip-link" href="#top">Skip to content</a>
+  <div class="sky" aria-hidden="true"><span class="orb orb-blue"></span><span class="orb orb-pink"></span><span class="orb orb-lilac"></span></div>
+  <header class="site-header">
+    <a class="brand" href="#top">Dreamfolio</a>
+    <div class="header-navigation"><nav class="page-tabs" aria-label="Portfolio pages"><a href="index.html">Professional</a><a href="personal.html" aria-current="page">Personal</a></nav><nav class="nav" aria-label="On this page"></nav></div>
+  </header>
+  <main id="top" tabindex="-1">
+    <div id="load-state" role="status" class="load-error">Loading portfolio…</div>
+    <noscript><p>Please enable JavaScript to display this portfolio.</p></noscript>
+    <section class="hero personal-hero" id="hero" hidden></section>
+    <section class="section" id="hobbies" hidden><h2 class="section-heading">Things that make me, me</h2><div class="hobby-grid"></div></section>
+    <section class="section" id="travel" hidden><h2 class="section-heading">A little further from home</h2><div class="travel-grid"></div></section>
+  </main>
+  <footer class="site-footer"><p id="footer-copy"></p><p id="sample-note" class="demo-note" hidden>Fictional portfolio · sample content and links</p></footer>
+</body>
+</html>

@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && cp game/game.html game/index.html",
-    "preview": "vite preview"
+    "build": "vite build && cp game/game.html game/index.html && node scripts/build-static.mjs",
+    "preview": "vite preview",
+    "build:portfolio": "node scripts/build-static.mjs"
   },
   "dependencies": {
     "@react-three/drei": "^9.105.0",
